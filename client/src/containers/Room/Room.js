@@ -132,7 +132,11 @@ class Room extends Component {
 
     componentDidMount = async () => {
         try{
-            var fieldData = await axios.get(`/rooms/fieldData/${this.state.currentRoomData.roomId}`, {withCredentials: true});
+            const apiUrl = process.env.API_URL || 'http://localhost:5000/api';
+            var fieldData = await axios.get(
+              `${apiUrl}/rooms/fieldData/${this.state.currentRoomData.roomId}`,
+              { withCredentials: true }
+            );
             this.setState({fieldData: fieldData.data})
         } catch(error) {
             console.log("error getting formData");

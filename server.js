@@ -53,10 +53,15 @@ const app = express()
     next();
 })
 
+const corsOptions = {
+  origin: process.env.FRONTEND_APP_URL || 'http://localhost:3000'
+}
+app.use(cors(corsOptions));
+
 //backend routing
-app.use('/leads', leadRouter);
-app.use('/auth', authRouter);
-app.use('/rooms', roomsRouter);
+app.use('/api/leads', leadRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/rooms', roomsRouter);
 
 console.log("Node env: " + process.env.NODE_ENV);
 //serve static assets if in production

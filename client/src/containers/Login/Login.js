@@ -69,7 +69,8 @@ class Login extends Component {
     login = async (role) => {
         try {
             //get the jwt stored in session cookie
-            let loginReq = await axios.get('/auth/login');
+            const apiUrl = process.env.API_URL || 'http://localhost:5000/api';
+            let loginReq = await axios.get(`${apiUrl}/auth/login`);
 
             //if status is 210, redirect the user to the constent page
             if(loginReq.status === 210) {

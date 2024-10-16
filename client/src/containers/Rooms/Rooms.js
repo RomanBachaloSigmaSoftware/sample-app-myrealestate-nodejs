@@ -64,7 +64,8 @@ class Rooms extends Component {
     }
 
     componentDidMount() {
-        axios.get('/rooms', {withCredentials: true})
+        const apiUrl = process.env.API_URL || 'http://localhost:5000/api';
+        axios.get(`${apiUrl}/rooms`, {withCredentials: true})
             .then(rooms => {
                this.setState({
                    rooms: rooms.data.rooms,
